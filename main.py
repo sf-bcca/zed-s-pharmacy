@@ -21,7 +21,7 @@ vaccinations = {
 # def
 # def
 # def
-# def
+
 def main():
     print("Welcome to the Zed's Pharmacy!")
     print("What can I help you with")
