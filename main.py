@@ -3,7 +3,7 @@ import csv
 
 insurnace_dictionary = {}
 
-with open('Insurance - Sheet1.csv', mode='r', newline='') as file:
+with open('Insurance - Sheet1.csv', mode = 'r', newline = '') as file:
     reader = csv.DictReader(file)
     for row in reader:
         name = row['Name']
@@ -11,6 +11,17 @@ with open('Insurance - Sheet1.csv', mode='r', newline='') as file:
         insurnace_dictionary[name] = float(percent)  # or use int() if it's an integer
 
 print(insurnace_dictionary)
+
+# vaccines_prices_dictionary = {}
+
+# with open('Vaccines & Prices - Sheet1.csv', mode = 'r', newline = '') as file:
+#     reader = csv.DictReader(file)
+#     for row in reader:
+#         name = row['Name']
+#         price = row['Price']
+#         vaccines_prices_dictionary[name] = int(price)
+
+# print(vaccines_prices_dictionary)
 
 #todo - read csv files for insurance, medication, and vacines
 
@@ -23,10 +34,10 @@ vaccinations_type = [
     "Flu", "RSV", "Covid-19", "Pneumonia", "Shingles"
 ]
 
-#todo - def calculate_total => in: float, float. out: float -> total
-#todo - def get_insurance_perc => in: insurance_dictionary, str (user input insurance). out -> float
-#todo - def get_med_price => in: medication_dictionary, str (user input choice). out -> float
-#todo - def get_vac_price => in: vac_dictionary, str (user input choice). out -> float
+# def calculate_total() => in: float, float. out: float -> total
+# def get_insurance_perc() => in: insurance_dictionary, str (user input insurance). out -> float
+# def get_med_price() => in: medication_dictionary, str (user input choice). out -> float
+# def get_vac_price() => in: vac_dictionary, str (user input choice). out -> float
 
 
 def get_patients_name(client_name: Customer) -> str:
@@ -65,8 +76,8 @@ def main():
     while True:
         if choices == "Vaccinations":
             vaccinations = get_vaccinations_type()
-            print("Already, your done! Can I help you with anything else today?")
-            print("Vaccination, Medicine, Or All Done?")
+            print("Alrighty, all finished! Can I help you with anything else today?")
+            vaccinations = input("Vaccination, Medicine, Or All Done? ")
         elif choices == "Medicine":
             pass
         else:
