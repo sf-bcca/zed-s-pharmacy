@@ -1,0 +1,21 @@
+Key = Medicare
+Value = 40%
+
+Key = Medicaid
+value = 20%
+
+
+
+
+Medication: 
+Key = Lexipro
+Value = 200.15
+....
+
+
+Van
+...
+
+
+200.15*.4= returnedvalue
+200.15 - returnedvalue

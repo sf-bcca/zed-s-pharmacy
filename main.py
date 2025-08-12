@@ -1,4 +1,18 @@
 from dataclasses import dataclass
+import csv
+
+insurnace_dictionary = {}
+
+with open('Insurance - Sheet1.csv', mode='r', newline='') as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        name = row['Name']
+        percent = row['Percent']
+        insurnace_dictionary[name] = float(percent)  # or use int() if it's an integer
+
+print(insurnace_dictionary)
+
+#todo - read csv files for insurance, medication, and vacines
 
 @dataclass
 class Customer:
@@ -8,6 +22,12 @@ class Customer:
 vaccinations_type = [
     "Flu", "RSV", "Covid-19", "Pneumonia", "Shingles"
 ]
+
+#todo - def calculate_total => in: float, float. out: float -> total
+#todo - def get_insurance_perc => in: insurance_dictionary, str (user input insurance). out -> float
+#todo - def get_med_price => in: medication_dictionary, str (user input choice). out -> float
+#todo - def get_vac_price => in: vac_dictionary, str (user input choice). out -> float
+
 
 def get_patients_name(client_name: Customer) -> str:
     client_name = input("Name: ")
@@ -33,6 +53,7 @@ def get_vaccinations_type():
     
 def get_medicine_type():
     pass
+#todo
 def main():
     print("Welcome to the Zed's Pharmacy!")
     print("May you sign in for us today?")
