@@ -33,6 +33,8 @@ vaccinations_type = [
     "Flu", "RSV", "Covid-19", "Pneumonia", "Shingles"
 ]
 
+vaccinations_to_get = []
+
 def get_patients_name(client_name: Customer) -> str:
     client_name = input("Name: ")
     return 
@@ -49,6 +51,7 @@ def get_vaccinations_type():
     print(vaccinations_type)
     type_to_remove = input("What type of vaccination are you taken today?: ")
     try:
+        vaccinations_to_get.append(type_to_remove)
         vaccinations_type.remove(type_to_remove)
         print(f"💉💉💉 ")
     except ValueError:
@@ -77,8 +80,11 @@ def main():
         elif user_input == "Medicine":
             pass
         elif user_input == "Done":
-            removed_items = vaccinations_type.remove
-            print(removed_items)
+            # removed_items = vaccinations_type.remove
+            # print(removed_items)
+            print("You have recieved these vaccinations:")
+            for vaccine in vaccinations_to_get:
+                print(vaccine)
             if user_input == "Vaccination":
                 get_vac_price()
             break
