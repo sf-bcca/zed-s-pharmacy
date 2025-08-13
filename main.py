@@ -24,7 +24,6 @@ with open('Vaccines & Prices - Sheet1.csv', mode = 'r', newline = '') as file:
 print(vaccines_prices_dictionary)
 
 
-
 @dataclass
 class Customer:
     client_name: str
@@ -61,6 +60,7 @@ def get_medicine_type():
 
 def get_vac_price():
     pass
+
 def main():
     print("Welcome to the Zed's Pharmacy!")
     print("May you sign in for us today?")
@@ -77,7 +77,10 @@ def main():
         elif user_input == "Medicine":
             pass
         elif user_input == "Done":
-            print(f"{vaccinations_type.remove}")
+            removed_items = vaccinations_type.remove
+            print(removed_items)
+            if user_input == "Vaccination":
+                get_vac_price()
             break
 
 
