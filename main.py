@@ -1,29 +1,5 @@
 from dataclasses import dataclass
 import csv
-
-insurnace_dictionary = {}
-
-with open('Insurance - Sheet1.csv', mode = 'r', newline = '') as file:
-    reader = csv.DictReader(file)
-    for row in reader:
-        name = row['Name']
-        percent = row['Percent']
-        insurnace_dictionary[name] = float(percent)  # or use int() if it's an integer
-
-print(insurnace_dictionary)
-
-vaccines_prices_dictionary = {}
-
-with open('Vaccines & Prices - Sheet1.csv', mode = 'r', newline = '') as file:
-    reader = csv.DictReader(file)
-    for row in reader:
-        name = row['Name']
-        price = row['Price']
-        vaccines_prices_dictionary[name] = int(price)
-
-print(vaccines_prices_dictionary)
-
-
 @dataclass
 class Customer:
     client_name: str
@@ -36,11 +12,12 @@ vaccinations_type = [
 vaccinations_to_get = []
 
 def get_patients_name(client_name: Customer) -> str:
-    client_name = input("Name: ")
-    return 
+    while True:
+        client_name = input("Name: ")
+       
 
 def get_birthday(birthday: Customer) -> int:
-    birthday = input("Birthday: ")
+    birthday = input("Birthday(00/00/0000): ")
     return
 
 def get_ssn(ssn: Customer) -> int:
@@ -62,7 +39,24 @@ def get_medicine_type():
     pass
 
 def get_vac_price():
-    pass
+    pay = input("")
+    insurnance_dictionary = {}
+    with open('Insurance - Sheet1.csv', mode = 'r', newline = '') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            name = row['Name']
+            percent = row['Percent']
+            insurnance_dictionary[name] = float(percent)  # or use int() if it's an integer
+    print(insurnance_dictionary)
+
+    vaccines_prices_dictionary = {}
+    with open('Vaccines & Prices - Sheet1.csv', mode = 'r', newline = '') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            name = row['Name']
+            price = row['Price']
+            vaccines_prices_dictionary[name] = int(price)
+    print(vaccines_prices_dictionary)
 
 def main():
     print("Welcome to the Zed's Pharmacy!")
@@ -76,18 +70,19 @@ def main():
         if user_input == "Vaccinations":
             get_vaccinations_type()
             print("Alrighty, all finished! Can I help you with anything else today?")
-            user_input = input("Vaccinations, Medicine, Or Done?")
+            user_input = input("Vaccinations, Medicine, Or Done? ")
         elif user_input == "Medicine":
             pass
         elif user_input == "Done":
-            # removed_items = vaccinations_type.remove
-            # print(removed_items)
-            print("You have recieved these vaccinations:")
+            print("You have received these :")
             for vaccine in vaccinations_to_get:
                 print(vaccine)
-            if user_input == "Vaccination":
-                get_vac_price()
+            print("Hey! I hope your visit was well today!")
+            pay_me = input("Will you being using your insurance today? yes or no? ")
+            if pay_me == "yes":
+                pass
             break
+
 
 
         
