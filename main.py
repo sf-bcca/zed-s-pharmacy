@@ -12,9 +12,8 @@ vaccinations_type = [
 vaccinations_to_get = []
 
 def get_patients_name(client_name: Customer) -> str:
-    while True:
-        client_name = input("Name: ")
-       
+    client_name = input("Name: ")
+    return
 
 def get_birthday(birthday: Customer) -> int:
     birthday = input("Birthday(00/00/0000): ")
@@ -38,25 +37,29 @@ def get_vaccinations_type():
 def get_medicine_type():
     pass
 
-def get_vac_price():
-    pay = input("")
-    insurnance_dictionary = {}
-    with open('Insurance - Sheet1.csv', mode = 'r', newline = '') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            name = row['Name']
-            percent = row['Percent']
-            insurnance_dictionary[name] = float(percent)  # or use int() if it's an integer
-    print(insurnance_dictionary)
+# def get_vac_pr():
+#     vaccines_prices_dictionary = {}
+#     with open('Vaccines & Prices - Sheet1.csv', mode = 'r', newline = '') as file:
+#         reader = csv.DictReader(file)
+#         for row in reader:
+#             name = row['Name']
+#             price = row['Price']
+#             vaccines_prices_dictionary[name] = int(price)
+#     print(vaccines_prices_dictionary)
 
-    vaccines_prices_dictionary = {}
-    with open('Vaccines & Prices - Sheet1.csv', mode = 'r', newline = '') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            name = row['Name']
-            price = row['Price']
-            vaccines_prices_dictionary[name] = int(price)
-    print(vaccines_prices_dictionary)
+# def get_insurance_pr():
+#     insurance = input("What type of insurance will you be using today? ")
+#     insurnance_dictionary = {}
+#     with open('Insurance - Sheet1.csv', mode = 'r', newline = '') as file:
+#         reader = csv.DictReader(file)
+#         for row in reader:
+#             name = row['Name']
+#             percent = row['Percent']
+#             insurnance_dictionary[name] = float(percent)  # or use int() if it's an integer
+#     print(insurnance_dictionary)
+    
+def get_insurance_pr(filename, users_input):
+    pass
 
 def main():
     print("Welcome to the Zed's Pharmacy!")
@@ -74,13 +77,15 @@ def main():
         elif user_input == "Medicine":
             pass
         elif user_input == "Done":
-            print("You have received these :")
+            print("Hey! I hope your visit was well today!")
+            print("You have received these shots today:")
             for vaccine in vaccinations_to_get:
                 print(vaccine)
-            print("Hey! I hope your visit was well today!")
             pay_me = input("Will you being using your insurance today? yes or no? ")
             if pay_me == "yes":
-                pass
+                insurance = get_insurance_pr() 
+            elif pay_me == "no":
+                full_price = get_vac_pr()
             break
 
 
