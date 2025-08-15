@@ -99,8 +99,22 @@ def get_insurance_pr():
                 percent = row['Percent']
                 insurance_dictionary[name] = float(percent)
     except FileNotFoundError:
-         print (f"Please try again!")
-    return insurance_dictionary
+        print (f"Please try again!")
+        return None
+    insurance = input("\nPlease type in your insurance you will be using today? ")
+    if insurance in insurance_dictionary:
+        print(f"{insurance} covers {insurance_dictionary[insurance] * 100}%")
+
+        total = 0
+        discounted_price = insurance_dictionary[insurance]
+
+        vaccinations_price = get_vac_pr():
+        for vaccine in vaccinations_to_get:
+            if vaccine in vaccinations_price:
+                cost = vaccinations_price[vaccine] * discounted_price
+                total += cost
+                print(f"{vaccine}: $")
+
 
 def main():
     print("🏥 Welcome to the Zed's Pharmacy!🏥")
