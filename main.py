@@ -89,7 +89,7 @@ def get_medicine_pr():
         print("Please try again!")
     return medicine_price_dictionary
 
-def get_insurance_pr(filename, users_input):
+def get_insurance_pr():
     insurance_dictionary = {}
     try:
         with open('Insurance - Sheet1.csv', mode = 'r', newline = '') as file:
