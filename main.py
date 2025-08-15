@@ -44,8 +44,8 @@ def get_vaccinations_type():
         try:
             vaccinations_to_get.append(type_to_remove)
             vaccinations_type.remove(type_to_remove)
-            print(f"💉💉💉 ")
-            print("Alrighty, all finished! Can I help you with anything else today?")
+            print(f"\n💉 {type_to_remove} added to order!")
+            print("\nAlrighty, all finished! Can I help you with anything else today?")
             return
         except ValueError:
             print(f"{type_to_remove} not found in list.")
@@ -57,48 +57,63 @@ def get_medicine_type():
         try:
             medicine_to_get.append(type_to_remove)
             medicine_type.remove(type_to_remove)
-            print(f"💊💊💊")
-            print("Alrighty, all finished! Can I help you with anything else today?")
+            print(f"\n💊 {type_to_remove} added to order!")
+            print(f"\nAlrighty, all finished! Can I help you with anything else today?")
             return
         except ValueError:
             print(f"{type_to_remove} not found in list.")
 
-# def get_vac_pr():
-#     vaccines_prices_dictionary = {}
-#     with open('Vaccines & Prices - Sheet1.csv', mode = 'r', newline = '') as file:
-#         reader = csv.DictReader(file)
-#         for row in reader:
-#             name = row['Name']
-#             price = row['Price']
-#             vaccines_prices_dictionary[name] = int(price)
-#     print(vaccines_prices_dictionary)
+def get_vac_pr():
+    vaccines_prices_dictionary = {}
+    try:
+        with open('Vaccines & Prices - Sheet1.csv', mode = 'r', newline = '') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                name = row['Name']
+                price = row['Price']
+                vaccines_prices_dictionary[name] = int(price)
+    except FileNotFoundError:
+        print("Please try again.")
+    return vaccines_prices_dictionary
 
-# def get_insurance_pr():
-#     insurance = input("What type of insurance will you be using today? ")
-#     insurnance_dictionary = {}
-#     with open('Insurance - Sheet1.csv', mode = 'r', newline = '') as file:
-#         reader = csv.DictReader(file)
-#         for row in reader:
-#             name = row['Name']
-#             percent = row['Percent']
-#             insurnance_dictionary[name] = float(percent)  # or use int() if it's an integer
-#     print(insurnance_dictionary)
-    
+def get_medicine_pr():
+    medicine_price_dictionary = {}
+    try:
+        with open('medicines.csv', mode = 'r', newline = '') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                name = row['Medicine Name']
+                price = float(row['Price'])
+                medicine_price_dictionary[name] = price
+    except FileNotFoundError:
+        print("Please try again!")
+    return medicine_price_dictionary
+
 def get_insurance_pr(filename, users_input):
-    pass
+    insurance_dictionary = {}
+    try:
+        with open('Insurance - Sheet1.csv', mode = 'r', newline = '') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                name = row['Name']
+                percent = row['Percent']
+                insurance_dictionary[name] = float(percent)
+    except FileNotFoundError:
+         print (f"Please try again!")
+    return insurance_dictionary
 
 def main():
-    print("Welcome to the Zed's Pharmacy!")
+    print("🏥 Welcome to the Zed's Pharmacy!🏥")
     print("May you sign in for us today?")
     name = get_patients_name(client_name = str)
     birthday = get_birthday(birthday = int)
     ssn = get_ssn(ssn = int)
-    print("What can we help you with today?")
-    user_input = input("Vaccinations or Medicine?: ")
+    print("\nWhat can we help you with today?")
+    user_input = input("\nVaccinations or Medicine?: ")
     while user_input != "All Done":
         if user_input == "Vaccinations":
             get_vaccinations_type()
-            user_input = input("Vaccinations, Medicine, Or Done? ")
+            user_input = input("\nVaccinations, Medicine, Or Done? ")
         elif user_input == "Medicine":
             get_medicine_type()
             user_input = input("Vaccinations, Medicine, Or Done? ")
