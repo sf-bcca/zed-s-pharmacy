@@ -151,16 +151,25 @@ def main():
             if pay_me == "yes":
                 insurance = get_insurance_pr() 
             elif pay_me == "no":
-                full_price = get_vac_pr()
+                vaccination_prices = get_vac_pr()
+                medicine_prices = get_medicine_pr()
+                total_cost = 0
                 for vaccine in vaccinations_to_get:
                 # print(full_price))
-                    print(f"Vaccination Type: {vaccine} | Price: ${full_price[vaccine]}")
-                full_price = get_medicine_pr()
-                for medicine in medicine_to_get:
+                #     print(f"Vaccination Type: {vaccine} | Price: ${full_price[vaccine]}")
+                # full_price = get_medicine_pr()
+                    vaccine_cost = vaccination_prices[vaccine]
+                    print(f"Vaccination Type: {vaccine} | Price: ${vaccine_cost}")
+                    total_cost += vaccine_cost
+                    for medicine in medicine_to_get:
+                        medicine_cost = medicine_prices[medicine]
+                        print(f"Medicine Type: {medicine} | Price: ${medicine_cost}")
+                        total_cost += medicine_cost
+                    print(f"Your total cost today will be: {total_cost}")
                 # print(full_price))
-                    print(f"Medicine Type: {medicine} | Price: ${full_price[medicine]}")
-                total_cost = full_price[vaccine] + full_price[medicine]
-                print(f"Your total cost today will be: {total_cost}")
+                #     print(f"Medicine Type: {medicine} | Price: ${full_price[medicine]}")
+                # total_cost = full_price[vaccine] + full_price[medicine]
+                
                     
                 # full_price = get
             break
