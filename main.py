@@ -25,7 +25,7 @@ def get_patients_name(client_name: Customer) -> str:
             print("Please try again. We need a valid name.")
 
 def get_birthday(birthday: Customer) -> int:
-    birthday = input("Birthday(00/00/0000): ")
+    birthday = input("Birthday(mm/dd/yyyy): ")
     return
 
 def get_ssn(ssn: Customer) -> int:
@@ -89,6 +89,8 @@ def get_medicine_pr():
         print("Please try again!")
     return medicine_price_dictionary
 
+
+
 def get_insurance_pr():
     insurance_dictionary = {}
     try:
@@ -108,17 +110,24 @@ def get_insurance_pr():
         total = 0
         discounted_price = insurance_dictionary[insurance]
 
-        vaccinations_price = get_vac_pr():
+        vaccinations_price = get_vac_pr()
         for vaccine in vaccinations_to_get:
             if vaccine in vaccinations_price:
                 cost = vaccinations_price[vaccine] * discounted_price
                 total += cost
-                print(f"{vaccine}: $")
+                print(f"{vaccine}: ${total:.2f}")
+        
+        medicine_price = get_medicine_pr()
+        for medicine in medicine_to_get:
+            if medicine in medicine_price:
+                cost = medicine_price[medicine] * discounted_price
+                total += cost
+                print(f"{medicine}: ${total:.2f}")
 
 
 def main():
     print("🏥 Welcome to the Zed's Pharmacy!🏥")
-    print("May you sign in for us today?")
+    print("\nMay you sign in for us today?")
     name = get_patients_name(client_name = str)
     birthday = get_birthday(birthday = int)
     ssn = get_ssn(ssn = int)
@@ -132,17 +141,28 @@ def main():
             get_medicine_type()
             user_input = input("Vaccinations, Medicine, Or Done? ")
         elif user_input == "Done":
-            print("Hey! I hope your visit was well today!")
+            print("\nHey! I hope your visit was well today!")
             print("You have received these checkups today for:")
             for vaccine in vaccinations_to_get:
                 print(vaccine)
             for medicine in medicine_to_get:
                 print(medicine)
-            pay_me = input("Will you being using your insurance today? yes or no? ")
+            pay_me = input("\nWill you being using your insurance today? yes or no? ")
             if pay_me == "yes":
                 insurance = get_insurance_pr() 
             elif pay_me == "no":
                 full_price = get_vac_pr()
+                for vaccine in vaccinations_to_get:
+                # print(full_price))
+                    print(f"Vaccination Type: {vaccine} | Price: ${full_price[vaccine]}")
+                full_price = get_medicine_pr()
+                for medicine in medicine_to_get:
+                # print(full_price))
+                    print(f"Medicine Type: {medicine} | Price: ${full_price[medicine]}")
+                total_cost = full_price[vaccine] + full_price[medicine]
+                print(f"Your total cost today will be: {total_cost}")
+                    
+                # full_price = get
             break
 
 
